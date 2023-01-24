@@ -1,5 +1,6 @@
-const inquirer = require('inquirer')
-const fs = require('fs')
+const inquirer = require('inquirer');
+const fs = require('fs');
+let badge = '';
 
 const prompts = [
     {
@@ -25,7 +26,7 @@ const prompts = [
     {
         type: 'list',
         message: 'Please select the license type.',
-        choices: ['MIT', 'GPLv2', 'Apache', 'Other'],
+        choices: ['MIT', 'GPLv2', 'Apache', 'GPLv3'],
         name: 'license',
     },
     {
@@ -40,13 +41,13 @@ const prompts = [
     },
     {
         type: 'input',
-        message: 'What should someone do if they have questions about this project?',
-        name: 'questions',
+        message: 'What is your GitHub username?',
+        name: 'github',
     },
     {
         type: 'input',
-        message: 'What is your GitHub username?',
-        name: 'github',
+        message: 'What is the link to your GitHub Profile?',
+        name: 'githubLink',
     },
     {
         type: 'input',
@@ -55,11 +56,25 @@ const prompts = [
     }
 ]
 
+function makeBadge(data){
+    if(data.license === 'MIT'){
+        badge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+    }else if(data.license === "GPLv2"){
+        badge = "[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)";
+    }else if(data.license === "Apache"){
+        badge = "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
+    }else if(data.license === "Other"){
+        badge = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+    };
+};
+
+
 inquirer
     .prompt(prompts)
     .then(data =>{
-        let createMD = `
-# ${data.projectName}
+        makeBadge(data);
+        let createMD = 
+`# ${data.projectName} ${badge}
 
 ## Description
 
@@ -67,49 +82,46 @@ ${data.description}
 
 ## Table of Contents
 
-- [Installation]
-- [Usage]
-- [License]
-- [Contribution]
-- [Tests]
-- [Questions]
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contribution](#contribution)
+- [Tests](#tests)
+- [Questions](#questions)
 
 ## Installation
 
-${installation}
+${data.installation}
 
 ## Usage
 
-${Usage}
+${data.usage}
 
 ## License
 
-${license}
+This project was created using a ${data.license} license.
 
 ## Contribution
 
-${contribution}
+${data.contribution}
 
 ## Tests
 
-${tests}
+${data.tests}
 
 ## Questions
 
-${questions}
-
-## 
-
-
-
-
-        `
+If you have any questions about this project, please feel free to reach out to me!
+## ##
+Github: [${data.github}](${data.githubLink})
+## ##
+Email: [${data.email}](mailto:${data.email})`
 
     fs.writeFile('professional-readme.md', createMD, err =>{
         if(err){
             console.log('Please complete all of the questions.')
         }else{
-            console.log('Good work!')
+            console.log('Your new README has been created!')
         }
     })
 })
