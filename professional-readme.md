@@ -1,8 +1,8 @@
-# asd [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+# README Generator [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 ## Description
 
-asd
+Generates a README.
 
 ## Table of Contents
 
@@ -15,11 +15,11 @@ asd
 
 ## Installation
 
-asd
+Just do it
 
 ## Usage
 
-asd
+Use this carefully
 
 ## License
 
@@ -27,16 +27,16 @@ This project was created using a GPLv2 license.
 
 ## Contribution
 
-asd
+Skillfully
 
 ## Tests
 
-asd
+I have performed a series of tests.
 
 ## Questions
 
 If you have any questions about this project, please feel free to reach out to me!
 ## ##
-Github: [asd](asd)
+Github: [Erik814](https://github.com/erik814)
 ## ##
-Email: [asd](mailto:asd)
+Email: [erikneafus@gmail.com](mailto:erikneafus@gmail.com)

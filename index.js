@@ -63,7 +63,7 @@ function makeBadge(data){
         badge = "[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)";
     }else if(data.license === "Apache"){
         badge = "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
-    }else if(data.license === "Other"){
+    }else if(data.license === "GPLv3"){
         badge = "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
     };
 };
@@ -74,6 +74,7 @@ inquirer
     .then(data =>{
         makeBadge(data);
         let createMD = 
+        
 `# ${data.projectName} ${badge}
 
 ## Description
@@ -119,7 +120,7 @@ Email: [${data.email}](mailto:${data.email})`
 
     fs.writeFile('professional-readme.md', createMD, err =>{
         if(err){
-            console.log('Please complete all of the questions.')
+            console.log(err)
         }else{
             console.log('Your new README has been created!')
         }
